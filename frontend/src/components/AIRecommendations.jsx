@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Brain, Zap, Activity, Apple, Lightbulb, TrendingUp, Sparkles, Wand2, Send, Loader2, Heart, Smile, Frown, Meh } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE } from '../config';
 
-const API_BASE = 'http://localhost:5000/api';
 
 const AIRecommendations = () => {
   const [insights, setInsights] = useState('');

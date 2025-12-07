@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Sparkles, Send, Loader2, Wand2, TrendingUp, Heart, Smile, Frown, Meh, Lightbulb } from 'lucide-react'
 import axios from 'axios'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function DungeonMaster() {
   const [reflection, setReflection] = useState('')

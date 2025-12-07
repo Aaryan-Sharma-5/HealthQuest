@@ -15,8 +15,8 @@ import ActivityLogger from './ActivityLogger';
 import AIRecommendations from './AIRecommendations';
 import Calendar from './Calendar';
 import Leaderboard from './Leaderboard';
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function Dashboard() {
   const [currentPage, setCurrentPage] = useState('dashboard')

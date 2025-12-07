@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import { ChevronLeft, ChevronRight, Target, Footprints, Trophy, Heart, TrendingUp, Calendar as CalendarIcon } from 'lucide-react'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function Calendar() {
   const { user } = useAuth()

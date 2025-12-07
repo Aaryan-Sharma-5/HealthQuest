@@ -1,4 +1,3 @@
-cat > .gitignore << 'EOF'
 # Python
 __pycache__/
 *.py[cod]
@@ -24,9 +23,12 @@ wheels/
 .installed.cfg
 *.egg
 
-# Environment
+# Environment variables - NEVER commit these!
 .env
 .env.local
+.env.*.local
+backend/.env
+frontend/.env
 
 # IDE
 .vscode/
@@ -42,4 +44,13 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
-EOF
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+*.log
+logs/

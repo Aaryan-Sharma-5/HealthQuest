@@ -3,8 +3,8 @@ import { TrendingUp, Calendar, Heart, Brain, Activity, Award, Smile, Meh, Frown,
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function Analytics() {
   const { user: authUser } = useAuth()

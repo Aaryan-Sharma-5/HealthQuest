@@ -3,8 +3,8 @@ import { User, Award, Trophy, Calendar, Target, Zap, Dumbbell, Brain, Heart, Fil
 import axios from 'axios'
 import HerAvatarF from '../assests/Her_Avatar_F.jpg'
 import HimAvatarM from '../assests/Him_Avatar_M.jpg'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function Profile() {
   const [user, setUser] = useState(null)

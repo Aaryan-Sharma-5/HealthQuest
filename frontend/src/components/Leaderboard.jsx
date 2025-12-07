@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { TrendingUp, Users, Award, Zap, Target, Trophy, Medal } from 'lucide-react'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function Leaderboard() {
   const { user: authUser } = useAuth()

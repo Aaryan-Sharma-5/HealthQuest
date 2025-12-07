@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Mic, MicOff, Send, Droplet, Footprints, Moon, Apple, Brain, Frown, Meh, Smile, FileText, Lightbulb, Zap, MapPin, Flame } from 'lucide-react'
 import axios from 'axios'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 const ACTIVITY_TYPES = [
   { id: 'steps', label: 'Steps', icon: Footprints, color: 'green', unit: 'steps' },

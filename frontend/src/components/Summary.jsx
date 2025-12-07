@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Badge from './Badge'
 import { Trophy, Flame, Star, Activity as ActIcon, Smile } from 'lucide-react'
+import { API_BASE } from '../config'
 
-const API_BASE = 'http://localhost:5000/api'
 
 function computeStreak(logs = []) {
   if (!logs || logs.length === 0) return { current: 0, longest: 0 }
