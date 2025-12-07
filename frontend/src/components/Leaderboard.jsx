@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { TrendingUp, Users, Award, Zap, Target, Trophy, Medal } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { useAuth } from '../context/AuthContext'
 import { API_BASE } from '../config'
 
@@ -48,10 +48,10 @@ function Leaderboard() {
       }
 
       const [leaderboardRes, rankRes] = await Promise.all([
-        axios.get(url, {
+        axiosInstance.get(url, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get(rankUrl, {
+        axiosInstance.get(rankUrl, {
           headers: { Authorization: `Bearer ${token}` }
         })
       ])

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Sparkles, Send, Loader2, Wand2, TrendingUp, Heart, Smile, Frown, Meh, Lightbulb } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { API_BASE } from '../config'
 
 
@@ -18,7 +18,7 @@ function DungeonMaster() {
   const fetchInitialCoaching = async () => {
     try {
       const token = localStorage.getItem('token')
-      const res = await axios.post(`${API_BASE}/ai/coaching-message`, {
+      const res = await axiosInstance.post(`${API_BASE}/ai/coaching-message`, {
         sentiment: 'neutral'
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -38,14 +38,14 @@ function DungeonMaster() {
       const token = localStorage.getItem('token')
       
       // Get AI coaching based on reflection
-      const coachingRes = await axios.post(`${API_BASE}/ai/coaching-message`, {
+      const coachingRes = await axiosInstance.post(`${API_BASE}/ai/coaching-message`, {
         reflection_text: reflection
       }, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
       // Get adaptive difficulty
-      const difficultyRes = await axios.post(`${API_BASE}/ai/adapt-difficulty`, {}, {
+      const difficultyRes = await axiosInstance.post(`${API_BASE}/ai/adapt-difficulty`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       })
       

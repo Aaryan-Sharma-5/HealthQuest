@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import Badge from './Badge'
 import { Trophy, Flame, Star, Activity as ActIcon, Smile } from 'lucide-react'
 import { API_BASE } from '../config'
@@ -49,8 +49,8 @@ function Summary() {
   const fetchData = async () => {
     try {
       const [userRes, activityRes] = await Promise.all([
-        axios.get(`${API_BASE}/user/hero_001`),
-        axios.get(`${API_BASE}/activity/history?limit=30`)
+        axiosInstance.get(`${API_BASE}/user/hero_001`),
+        axiosInstance.get(`${API_BASE}/activity/history?limit=30`)
       ])
       const logs = activityRes.data.logs || []
       setUser(userRes.data)

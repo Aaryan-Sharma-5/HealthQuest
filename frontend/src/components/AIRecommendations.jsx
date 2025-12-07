@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Brain, Zap, Activity, Apple, Lightbulb, TrendingUp, Sparkles, Wand2, Send, Loader2, Heart, Smile, Frown, Meh } from 'lucide-react';
-import axios from 'axios';
+import axiosInstance from '../api/axios';
 import { API_BASE } from '../config';
 
 
@@ -24,7 +24,7 @@ const AIRecommendations = () => {
   const fetchInitialCoaching = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post(`${API_BASE}/ai/coaching-message`, {
+      const res = await axiosInstance.post(`${API_BASE}/ai/coaching-message`, {
         sentiment: 'neutral'
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -43,13 +43,13 @@ const AIRecommendations = () => {
     try {
       const token = localStorage.getItem('token');
       
-      const coachingRes = await axios.post(`${API_BASE}/ai/coaching-message`, {
+      const coachingRes = await axiosInstance.post(`${API_BASE}/ai/coaching-message`, {
         reflection_text: reflection
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
-      const difficultyRes = await axios.post(`${API_BASE}/ai/adapt-difficulty`, {}, {
+      const difficultyRes = await axiosInstance.post(`${API_BASE}/ai/adapt-difficulty`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

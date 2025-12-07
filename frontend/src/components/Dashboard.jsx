@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Sword } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import Navbar from './Navbar'
 import HUD from './HUD'
 import QuestBoard from './QuestBoard'
@@ -28,9 +28,9 @@ function Dashboard() {
   const fetchGameData = async () => {
     try {
       const [userRes, questsRes, bossRes] = await Promise.all([
-        axios.get(`${API_BASE}/user/hero_001`),
-        axios.get(`${API_BASE}/quests`),
-        axios.get(`${API_BASE}/boss`)
+        axiosInstance.get(`${API_BASE}/user/hero_001`),
+        axiosInstance.get(`${API_BASE}/quests`),
+        axiosInstance.get(`${API_BASE}/boss`)
       ])
       
       setUser(userRes.data)
@@ -52,14 +52,14 @@ function Dashboard() {
   const handleQuestComplete = async (questId) => {
     try {
       // Complete the quest (this now automatically adds XP and handles level up)
-      const questResponse = await axios.post(`${API_BASE}/quests/${questId}/complete`)
+      const questResponse = await axiosInstance.post(`${API_BASE}/quests/${questId}/complete`)
       
       if (questResponse.data.success) {
         const xpGained = questResponse.data.xpGained
         
         // Deal damage to boss (10% of XP gained)
         const bossDamage = Math.floor(xpGained * 0.1)
-        await axios.post(`${API_BASE}/boss/damage`, {
+        await axiosInstance.post(`${API_BASE}/boss/damage`, {
           damage: bossDamage
         })
         

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { TrendingUp, Calendar, Heart, Brain, Activity, Award, Smile, Meh, Frown, TrendingDown, Zap, Target } from 'lucide-react'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { useAuth } from '../context/AuthContext'
 import { API_BASE } from '../config'
 
@@ -25,13 +25,13 @@ function Analytics() {
       const userId = authUser?.username || authUser?._id || 'hero_001'
       
       const [userRes, activityRes, streakRes] = await Promise.all([
-        axios.get(`${API_BASE}/user/${userId}`, {
+        axiosInstance.get(`${API_BASE}/user/${userId}`, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get(`${API_BASE}/activity/history?limit=30`, {
+        axiosInstance.get(`${API_BASE}/activity/history?limit=30`, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get(`${API_BASE}/calendar/${userId}/streak`, {
+        axiosInstance.get(`${API_BASE}/calendar/${userId}/streak`, {
           headers: { Authorization: `Bearer ${token}` }
         })
       ])

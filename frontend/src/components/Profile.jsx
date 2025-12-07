@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { User, Award, Trophy, Calendar, Target, Zap, Dumbbell, Brain, Heart, FileText, Smile, Flame, Star, Crown, Gem, BookOpen } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import HerAvatarF from '../assests/Her_Avatar_F.jpg'
 import HimAvatarM from '../assests/Him_Avatar_M.jpg'
 import { API_BASE } from '../config'
@@ -18,8 +18,8 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const [userRes, activityRes] = await Promise.all([
-        axios.get(`${API_BASE}/user/hero_001`),
-        axios.get(`${API_BASE}/activity/history?limit=30`)
+        axiosInstance.get(`${API_BASE}/user/hero_001`),
+        axiosInstance.get(`${API_BASE}/activity/history?limit=30`)
       ])
       
       setUser(userRes.data)

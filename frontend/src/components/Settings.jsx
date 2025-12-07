@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Settings as SettingsIcon, User, Bell, Shield, Palette, Info, Save } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { API_BASE } from '../config'
 
 
@@ -27,7 +27,7 @@ function Settings() {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/user/hero_001`)
+      const response = await axiosInstance.get(`${API_BASE}/user/hero_001`)
       setUser(response.data)
     } catch (error) {
       console.error('Failed to fetch user:', error)

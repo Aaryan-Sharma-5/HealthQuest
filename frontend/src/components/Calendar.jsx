@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { useAuth } from '../context/AuthContext'
 import { ChevronLeft, ChevronRight, Target, Footprints, Trophy, Heart, TrendingUp, Calendar as CalendarIcon } from 'lucide-react'
 import { API_BASE } from '../config'
@@ -39,7 +39,7 @@ function Calendar() {
       
       const userId = user.username || user._id || 'hero_001'
       
-      const response = await axios.get(`${API_BASE}/calendar/${userId}`, {
+      const response = await axiosInstance.get(`${API_BASE}/calendar/${userId}`, {
         params: { year, month },
         headers: { Authorization: `Bearer ${token}` }
       })

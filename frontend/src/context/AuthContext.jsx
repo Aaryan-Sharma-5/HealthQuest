@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { API_AUTH } from '../config'
 
 const AuthContext = createContext(null)
@@ -11,20 +11,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState(localStorage.getItem('token'))
 
-  useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    } else {
-      delete axios.defaults.headers.common['Authorization']
-    }
-  }, [token])
-
   // Verify token on mount
   useEffect(() => {
     const verifyToken = async () => {
       if (token) {
         try {
-          const response = await axios.get(`${API_BASE}/verify`)
+          const response = await axiosInstance.get(`${API_BASE}/verify`)
           setUser(response.data.user)
         } catch (error) {
           console.error('Token verification failed:', error)
@@ -40,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(`${API_BASE}/login`, {
+      const response = await axiosInstance.post(`${API_BASE}/login`, {
         username: email, 
         password
       })
@@ -59,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password, gender = 'M') => {
     try {
-      const response = await axios.post(`${API_BASE}/register`, {
+      const response = await axiosInstance.post(`${API_BASE}/register`, {
         username,
         email,
         password,

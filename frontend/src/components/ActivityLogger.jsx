@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Mic, MicOff, Send, Droplet, Footprints, Moon, Apple, Brain, Frown, Meh, Smile, FileText, Lightbulb, Zap, MapPin, Flame } from 'lucide-react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { API_BASE } from '../config'
 
 
@@ -33,7 +33,7 @@ export default function ActivityLogger({ onActivityLogged }) {
       
       if (stepsValue && stepsValue > 0) {
         try {
-          const response = await axios.post(`${API_BASE}/activity/calculate-distance`, {
+          const response = await axiosInstance.post(`${API_BASE}/activity/calculate-distance`, {
             steps: stepsValue,
             gender: null // Can be enhanced to use user's gender
           })
@@ -111,7 +111,7 @@ export default function ActivityLogger({ onActivityLogged }) {
         }
       })
 
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${API_BASE}/activity/log`,
         {
           reflection: reflection || 'Daily check-in',

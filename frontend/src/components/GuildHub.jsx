@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../api/axios'
 import { Users, Crown, Trophy, Target, Plus, LogOut, Sword, Castle, Lightbulb } from 'lucide-react'
 import { API_BASE } from '../config'
 
@@ -14,7 +14,7 @@ export default function GuildHub() {
   const fetchGuilds = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${API_BASE}/guild/list`, {
+      const response = await axiosInstance.get(`${API_BASE}/guild/list`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setGuilds(response.data.guilds || [])
@@ -26,12 +26,12 @@ export default function GuildHub() {
   const fetchMyGuild = async () => {
     try {
       const token = localStorage.getItem('token')
-      const userResponse = await axios.get(`${API_BASE}/user/hero_001`, {
+      const userResponse = await axiosInstance.get(`${API_BASE}/user/hero_001`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
       if (userResponse.data.guild_id) {
-        const guildResponse = await axios.get(
+        const guildResponse = await axiosInstance.get(
           `${API_BASE}/guild/${userResponse.data.guild_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         )
@@ -54,7 +54,7 @@ export default function GuildHub() {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${API_BASE}/guild/create`,
         createForm,
         { headers: { Authorization: `Bearer ${token}` } }
@@ -73,7 +73,7 @@ export default function GuildHub() {
   const handleJoinGuild = async (guildId) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${API_BASE}/guild/${guildId}/join`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
@@ -93,7 +93,7 @@ export default function GuildHub() {
     
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${API_BASE}/guild/${myGuild._id}/leave`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
