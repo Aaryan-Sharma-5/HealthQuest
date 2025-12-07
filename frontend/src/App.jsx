@@ -1,5 +1,5 @@
 import { useAuth } from './context/AuthContext'
-import Auth from './components/Auth'
+import Auth from './components/auth'
 import Dashboard from './components/Dashboard'
 import './App.css'
 
