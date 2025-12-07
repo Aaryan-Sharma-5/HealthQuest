@@ -15,7 +15,8 @@ class Config:
     
     # Server Configuration
     PORT = int(os.getenv('PORT', 5000))
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(',')
+    cors_origins = os.getenv('CORS_ORIGINS', 'http://localhost:5173')
+    CORS_ORIGINS = [origin.strip() for origin in cors_origins.split(',')]
     
     # Game Configuration
     BASE_XP_PER_LEVEL = 100
